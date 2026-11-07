@@ -1,0 +1,8 @@
+.typing-line { font-family: ui-monospace, Menlo, Consolas, monospace; color: #ddd; text-align: center; padding: 0.5em; touch-action: manipulation; }
+.typing-text { font-size: 1.4em; line-height: 1.6; word-break: break-word; cursor: text; }
+.typing-text .pending { color: #888; }
+.typing-text .ok { color: #7fd17f; }
+.typing-text .bad { color: #ff6b6b; text-decoration: underline; }
+.typing-text .cursor { border-bottom: 2px solid #fff; }
+.typing-stats { margin-top: 0.5em; font-size: 0.9em; }
+.typing-hint { margin-top: 0.5em; opacity: 0.8; }
