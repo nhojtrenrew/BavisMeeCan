@@ -18,3 +18,7 @@ Evidence for the Kiroween write-up: one line per use of a Kiro feature. Format: 
 | 2026-11-07 | Crew CLI | Crew apps | Enabled Spec Builder (design + tasks per spec), Workflows (parallel lanes + verifier) and Code Review Sage (PR review) |
 | 2026-11-07 | Kiro hook | Hook | Added `.kiro/hooks/asset-export.kiro.hook`: saving a `.ase` or `.svg` in `assets/src/` asks the agent to run `npm run assets` and report palette failures |
 | 2026-11-07 | Crew skill | Skill | Added `.kiro/skills/kiro-log/SKILL.md` so every agent logs Kiro feature use in one format |
+| 2026-11-07 | Crew dashboard | Setup check | bavis-lead (claude-opus-5.5) installed LibreSprite 1.3 (portable, on user PATH); `libresprite --help` lists `--batch`, `--sheet` and `--data`, so lane A can export headless |
+| 2026-11-07 | Crew dashboard | Spec | bavis-lead (claude-opus-5.5) generated `.kiro/specs/skeleton/design.md` and `tasks.md` from its requirements, for John's approval |
+| 2026-11-07 | Crew dashboard | Spec (tasks) | bavis-lead (claude-opus-5.5) ran skeleton tasks 1–5 after John approved: Vite + TS project, page shell, Pages workflow |
+| 2026-11-07 | Crew dashboard | Property-based test | bavis-lead (claude-opus-5.5) added fast-check properties for `fitScale` (always fits, largest whole scale, fractional only when smaller) |
