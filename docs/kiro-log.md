@@ -22,3 +22,6 @@ Evidence for the Kiroween write-up: one line per use of a Kiro feature. Format: 
 | 2026-11-07 | Crew dashboard | Spec | bavis-lead (claude-opus-5.5) generated `.kiro/specs/skeleton/design.md` and `tasks.md` from its requirements, for John's approval |
 | 2026-11-07 | Crew dashboard | Spec (tasks) | bavis-lead (claude-opus-5.5) ran skeleton tasks 1–5 after John approved: Vite + TS project, page shell, Pages workflow |
 | 2026-11-07 | Crew dashboard | Property-based test | bavis-lead (claude-opus-5.5) added fast-check properties for `fitScale` (always fits, largest whole scale, fractional only when smaller) |
+| 2026-11-07 | Crew dashboard | Spec (tasks) | Skeleton task 6 passed: John confirmed the Pages URL on desktop Chrome and a real phone; lanes A–D unblocked |
+| 2026-11-07 | Crew dashboard | Spec | bavis-lead (claude-opus-5.5) generated design.md and tasks.md for asset-pipeline, renderer, typing-core and webllm-bavis, fixing the shared sheet JSON and module entry points so the four lanes can run in parallel; awaiting John's approval |
+| 2026-11-07 | Crew dashboard | Spec | John approved the four lane designs; bavis-lead (claude-opus-5.5) made the shared changes on main (scripts, pinned deps, test and tsconfig paths) before fan-out |

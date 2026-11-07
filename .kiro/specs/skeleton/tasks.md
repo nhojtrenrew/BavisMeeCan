@@ -29,7 +29,7 @@ Done by bavis-lead alone, on `main`. Lanes A–D wait until task 6 passes.
   - Commit and push to `main` (commit and push as separate commands)
   - _Requirements: 4.1_
 
-- [ ] 6. Live check (John)
+- [x] 6. Live check (John)
   - Actions run is green
   - The Pages URL loads on desktop Chrome and a real phone; prompt shows; rotating rescales; pixels stay sharp
   - Then the lead starts lanes A–D
