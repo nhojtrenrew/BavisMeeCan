@@ -22,5 +22,5 @@ bavis-builder on `feature/renderer`. Touch only `src/render/`.
   - `hello.ts` `startHelloScene(canvas)`; shows placeholders until art exists
   - _Requirements: 4.1_
 
-- [ ] 6. Log and hand off
+- [x] 6. Log and hand off
   - Rows in `docs/kiro-log.md` (property-based tests); push the branch; ask bavis-verifier to check it

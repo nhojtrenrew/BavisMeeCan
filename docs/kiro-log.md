@@ -25,3 +25,8 @@ Evidence for the Kiroween write-up: one line per use of a Kiro feature. Format: 
 | 2026-11-07 | Crew dashboard | Spec (tasks) | Skeleton task 6 passed: John confirmed the Pages URL on desktop Chrome and a real phone; lanes A–D unblocked |
 | 2026-11-07 | Crew dashboard | Spec | bavis-lead (claude-opus-5.5) generated design.md and tasks.md for asset-pipeline, renderer, typing-core and webllm-bavis, fixing the shared sheet JSON and module entry points so the four lanes can run in parallel; awaiting John's approval |
 | 2026-11-07 | Crew dashboard | Spec | John approved the four lane designs; bavis-lead (claude-opus-5.5) made the shared changes on main (scripts, pinned deps, test and tsconfig paths) before fan-out |
+| 2026-11-07 | Crew dashboard | Custom agent | bavis-lead (claude-opus-5.5) fanned out four bavis-builder (claude-sonnet-5.5) agents in parallel, one isolated worktree and `feature/<spec>` branch per lane |
+| 2026-11-07 | Crew dashboard | Spec (tasks) | bavis-builder (claude-sonnet-5.5) implemented renderer tasks 1–5 on `feature/renderer`, touching only `src/render/` |
+| 2026-11-07 | Crew dashboard | Property-based test | bavis-builder (claude-sonnet-5.5) added fast-check properties for `frameAt` (bounds, step function), `pickSize` (monotonic) and canvas-to-logical mapping |
+| 2026-11-07 | Crew dashboard | Custom agent | bavis-verifier (claude-sonnet-5.5) checked `feature/renderer`: 7/7 tests, build and tsc clean, scope clean, all criteria and the sheet contract pass; PASS with minor findings (pointer capture, listener cleanup) |
+| 2026-11-07 | Crew dashboard | Custom agent | bavis-builder (claude-sonnet-5.5) fixed the verifier's minor findings (pointer capture, `dispose()`); bavis-lead merged `feature/renderer` to main |

@@ -8,3 +8,6 @@ reference/
 
 # Per-user Claude settings (shared .claude/ files, if any, are committed)
 .claude/settings.local.json
+
+# Agent worktrees (Claude Code isolation)
+.claude/worktrees/
