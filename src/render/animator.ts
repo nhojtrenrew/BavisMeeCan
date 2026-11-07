@@ -26,8 +26,10 @@ export class Animator {
   private elapsed = 0;
   private last: number | null = null;
   constructor(private sheet: SheetJson, private tag: SheetTag) {
-    document.addEventListener('visibilitychange', () => { this.last = null; });
+    document.addEventListener('visibilitychange', this.reset);
   }
+  private reset = (): void => { this.last = null; };
+  dispose(): void { document.removeEventListener('visibilitychange', this.reset); }
   /** Call once per rAF with the rAF timestamp; returns the frame to draw. */
   tick(now: number): number {
     if (this.last !== null) this.elapsed += Math.min(Math.max(0, now - this.last), MAX_STEP_MS);

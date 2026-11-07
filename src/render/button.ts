@@ -19,16 +19,27 @@ export class SvgButton {
       const url = new URL(`${base}-${s}.svg`, document.baseURI).href;
       loadImage(url).then((i) => { this.imgs[s] = i; }, () => logOnce(url));
     }
-    canvas.addEventListener('pointerdown', (e) => {
-      if (this.state === 'disabled' || !this.hit(e)) return;
-      this.state = 'pressed';
-    });
-    canvas.addEventListener('pointerup', (e) => {
-      if (this.state !== 'pressed') return;
-      this.state = 'normal';
-      if (this.hit(e)) this.onPress();
-    });
-    canvas.addEventListener('pointercancel', () => { if (this.state === 'pressed') this.state = 'normal'; });
+    canvas.addEventListener('pointerdown', this.down);
+    canvas.addEventListener('pointerup', this.up);
+    canvas.addEventListener('pointercancel', this.cancel);
+  }
+
+  private down = (e: PointerEvent): void => {
+    if (this.state === 'disabled' || !this.hit(e)) return;
+    this.state = 'pressed';
+    this.canvas.setPointerCapture(e.pointerId);
+  };
+  private up = (e: PointerEvent): void => {
+    if (this.state !== 'pressed') return;
+    this.state = 'normal';
+    if (this.hit(e)) this.onPress();
+  };
+  private cancel = (): void => { if (this.state === 'pressed') this.state = 'normal'; };
+
+  dispose(): void {
+    this.canvas.removeEventListener('pointerdown', this.down);
+    this.canvas.removeEventListener('pointerup', this.up);
+    this.canvas.removeEventListener('pointercancel', this.cancel);
   }
 
   private size(): { w: number; h: number } {
