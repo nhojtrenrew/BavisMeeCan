@@ -18,5 +18,5 @@ bavis-builder on `feature/typing-core`. Touch only `src/typing/`.
   - `view.ts` + `typing.css`: `mountTypingLine(host, sentence)` with live stats and retry
   - _Requirements: 3.1, 3.2_
 
-- [ ] 5. Log and hand off
+- [x] 5. Log and hand off
   - Rows in `docs/kiro-log.md` (property-based tests); push the branch; ask bavis-verifier to check it
