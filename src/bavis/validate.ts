@@ -1,7 +1,7 @@
 /** Longest line Bavis may say. */
 export const MAX_LINE = 120;
 
-/** Minimal PG-13 block list: crude words only. Deliberately strict (substring, not just whole words). */
+/** Minimal PG-13 block list: crude words only. Matched as whole words. */
 export const BLOCKED = ['fuck', 'shit', 'bitch', 'cunt', 'dick', 'piss', 'slut', 'whore', 'nazi', 'rape', 'porn', 'cock'];
 
 const LEET: Record<string, string> = { '0': 'o', '1': 'i', '3': 'e', '4': 'a', '5': 's', '7': 't', '@': 'a', $: 's' };
@@ -15,11 +15,17 @@ function normalise(s: string): string {
     .replace(/[^a-z]+/g, ' ');
 }
 
-/** True when a blocked word appears, also split up by punctuation or spaces ("f.u.c.k"). */
+/** True when a blocked whole word appears, also spelled out letter by letter ("f.u.c.k"). */
 export function isBlocked(s: string): boolean {
-  const n = normalise(s);
-  const squashed = n.replace(/ /g, '');
-  return BLOCKED.some((w) => squashed.includes(w));
+  const tokens = normalise(s).split(' ');
+  const words = new Set(tokens);
+  // join runs of single letters: "f u c k" -> "fuck"
+  let run = '';
+  for (const t of [...tokens, '']) {
+    if (t.length === 1) run += t;
+    else { if (run.length > 1) words.add(run); run = ''; }
+  }
+  return BLOCKED.some((w) => words.has(w));
 }
 
 /** Clean a model line, or return null when it must not be shown. */

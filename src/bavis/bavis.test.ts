@@ -40,9 +40,18 @@ describe('validateLine', () => {
     );
   });
 
-  it('rejects block-list words split by punctuation or spaces', () => {
-    for (const w of BLOCKED) expect(validateLine([...w].join('.'))).toBeNull();
-    for (const w of BLOCKED) expect(validateLine([...w].join(' '))).toBeNull();
+  it('rejects stems split by punctuation, spaces or leetspeak', () => {
+    for (const w of BLOCKED) {
+      expect(validateLine([...w].join('.'))).toBeNull();
+      expect(validateLine([...w].join(' '))).toBeNull();
+      expect(validateLine(leet(w).toUpperCase())).toBeNull();
+    }
+  });
+
+  it('lets innocent words that contain block-list letters through', () => {
+    for (const w of ['grape', 'Scunthorpe', 'Cocktail', 'Dickens', 'Peacock', 'Drape', 'a bit chilly', 'this hit']) {
+      expect(validateLine(`I like ${w} a lot.`)).not.toBeNull();
+    }
   });
 
   it('rejects empty, multi-line and over-long text', () => {

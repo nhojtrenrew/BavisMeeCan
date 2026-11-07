@@ -55,7 +55,7 @@ export function mountSummon(host: HTMLElement): { destroy(): void } {
       canned();
       return;
     }
-    if (!confirm(`Summon Bavis with ${models[0].label}? This downloads about ${models[0].mb} MB. You can keep playing while it loads.`)) {
+    if (!confirm(`Summon Bavis with ${models[0].label}? It needs about ${models[0].mb} MB of graphics memory and a large download. You can keep playing while it loads.`)) {
       busy = false;
       return;
     }
