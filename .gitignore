@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.env*
+# Copyrighted study material must never be committed. Keep it outside the repo; this catches accidental copies.
+reference/
+*Mavis*
+*MAVIS*
