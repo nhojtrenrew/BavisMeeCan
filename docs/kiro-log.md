@@ -12,4 +12,4 @@ Evidence for the Kiroween write-up: one line per use of a Kiro feature. Format: 
 |---|---|---|---|
 | 2026-11-07 | Crew dashboard | Crew Knowledge | Added two local Knowledge sources: Mavis v2 reference and Hackathons folder (reference material, never committed) |
 | 2026-11-07 | Crew CLI | Crew lessons | Added four project lessons with `kirocrew learn add` (palette rule, reference rule, log rule, lane ownership rule) |
-| 2026-11-07 | Crew CLI + .kiro/agents/ | Custom agents | Created bavis-lead (claude-opus-4-5), bavis-builder (claude-sonnet-4-5), bavis-verifier (claude-sonnet-4-5) with workspace-level agent specs in .kiro/agents/ |
+| 2026-11-07 | Crew CLI + .kiro/agents/ | Custom agents | Created bavis-lead (claude-opus-5.5), bavis-builder (claude-sonnet-5.5), bavis-verifier (claude-sonnet-5.5) with workspace-level agent specs in .kiro/agents/ |
