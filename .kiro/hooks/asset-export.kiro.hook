@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Asset export on save",
+  "description": "When John saves LibreSprite or Affinity art, export it to public/assets/ and enforce the bavis-21 palette.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["assets/src/**/*.ase", "assets/src/**/*.svg"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "An art source file in assets/src/ was saved. Run `npm run assets`. If it fails, list each file, pixel and colour that broke the bavis-21 palette or alpha rule, and do not hand-edit anything in public/assets/. If it passes, say which files were exported. Then append a row to docs/kiro-log.md (surface: Kiro hook, feature: Hook)."
+  }
+}

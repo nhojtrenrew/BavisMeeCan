@@ -5,7 +5,7 @@ inclusion: always
 
 | Concern | Choice | Notes |
 |---|---|---|
-| Language / build | TypeScript (strict) + Vite | Node 22 LTS. No framework (React etc.) unless a spec justifies it |
+| Language / build | TypeScript (strict) + Vite | Node 24 LTS. No framework (React etc.) unless a spec justifies it |
 | Text and UI | Plain DOM + CSS | Typing line, menus, dialogs. Native focus and accessibility |
 | Sprites / scenes | One `<canvas>` 2D context, 640×480 logical | `imageSmoothingEnabled = false`, CSS `image-rendering: pixelated`, whole-number scale only |
 | Game engine | **None** for now | Add PixiJS or Phaser only through a spec that shows the need |
@@ -20,4 +20,5 @@ inclusion: always
 - Every module with branching logic ships at least one test.
 - The site must work from a sub-path (`/BavisMeeCan/`): set Vite `base`, and never use absolute `/` asset URLs.
 - Budget: first load (without the LLM) under 2 MB.
-- Models: lead agent Claude Opus 5.5, builders Claude Sonnet 5.5. Don't use Auto.
+- Models: lead agent Claude Opus 5.5 (`claude-opus-5.5`), builder and verifier Claude Sonnet 5.5 (`claude-sonnet-5.5`). Don't use Auto.
+- Log every Kiro feature use with the `kiro-log` skill (`.kiro/skills/kiro-log/SKILL.md`).

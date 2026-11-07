@@ -44,7 +44,7 @@ Create these as Kiro custom agents (ask Kiro to create them; that's evidence for
 | `bavis-builder` | Claude Sonnet 5.5 | Implements one spec's `tasks.md` on `feature/<spec>`, only in that lane's folder, with tests. Asks the lead for changes to shared files |
 | `bavis-verifier` | Claude Sonnet 5.5 | Read-mostly. Runs `npm test` and `npm run build`, checks the spec's acceptance criteria and the steering rules (palette, no reference assets, mobile input), and reports pass/fail with reasons. Doesn't write features |
 
-Keep the Crew agent backend on **Kiro CLI** (the default).
+Crew agent backend: **Claude** (set 2026-11-07), so the agents run Opus 5.5 / Sonnet 5.5. The member pins use Kiro's model IDs (`claude-opus-5.5`, `claude-sonnet-5.5`); the fallback model is `claude-sonnet-5.5`, never Auto.
 
 ## 5. Run order
 
