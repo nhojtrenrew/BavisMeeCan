@@ -1,3 +1,5 @@
+import { SENTINEL, stripSentinel } from './sentinel';
+
 export type InputHandlers = {
   onChar(char: string): void;
   onBackspace(): void;
@@ -28,7 +30,8 @@ export function createInput(tapTarget: HTMLElement, keepVisible: HTMLElement, h:
   let sawBeforeInputDelete = false;
 
   const feed = (text: string) => { for (const c of text) h.onChar(c); };
-  const focus = () => input.focus({ preventScroll: true });
+  const reset = () => { input.value = SENTINEL; input.setSelectionRange(1, 1); };
+  const focus = () => { input.focus({ preventScroll: true }); reset(); };
 
   const on = <T extends EventTarget>(el: T, type: string, fn: (e: any) => void) => {
     el.addEventListener(type, fn);
@@ -37,22 +40,28 @@ export function createInput(tapTarget: HTMLElement, keepVisible: HTMLElement, h:
 
   const offs = [
     on(tapTarget, 'pointerdown', focus),
+    on(tapTarget, 'click', focus), // iOS wants focus inside a click/touchend gesture
+    on(tapTarget, 'mousedown', (e: MouseEvent) => e.preventDefault()), // don't let the default action steal focus back
     on(input, 'beforeinput', (e: InputEvent) => {
+      if (e.inputType === 'insertFromPaste' || e.inputType === 'insertFromDrop') { e.preventDefault(); return; }
       if (composing || e.isComposing) return;
       if (e.inputType === 'deleteContentBackward') {
         sawBeforeInputDelete = true;
         e.preventDefault();
         h.onBackspace();
+        reset();
       } else if (e.inputType === 'insertText' && e.cancelable) {
         e.preventDefault();
         feed(e.data ?? '');
+        reset();
       }
     }),
     on(input, 'input', (e: InputEvent) => {
       // Fallback for browsers that don't cancel beforeinput.
-      if (composing || e.isComposing || skipInput) { if (!composing) input.value = ''; return; }
-      const v = input.value;
-      input.value = '';
+      if (e.inputType === 'insertFromPaste' || e.inputType === 'insertFromDrop') { reset(); return; }
+      if (composing || e.isComposing || skipInput) { if (!composing) reset(); return; }
+      const v = stripSentinel(input.value);
+      reset();
       feed(v);
     }),
     on(input, 'compositionstart', () => { composing = true; }),
@@ -60,8 +69,8 @@ export function createInput(tapTarget: HTMLElement, keepVisible: HTMLElement, h:
       composing = false;
       skipInput = true;
       setTimeout(() => { skipInput = false; }, 0);
-      input.value = '';
-      feed(e.data ?? '');
+      reset();
+      feed(stripSentinel(e.data ?? ''));
     }),
     on(input, 'keydown', (e: KeyboardEvent) => {
       if (composing || e.isComposing) return;
@@ -85,6 +94,7 @@ export function createInput(tapTarget: HTMLElement, keepVisible: HTMLElement, h:
   if (vv) {
     offs.push(on(vv, 'resize', layout), on(vv, 'scroll', layout));
   }
+  layout();
 
   return {
     focus,
